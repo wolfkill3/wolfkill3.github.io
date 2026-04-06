@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vadim Melnikov</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      background: #e8e8e8;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+
+    body {
+      width: 1024px;
+      margin: 32px auto;
+      background: #fff;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
+      font-size: 11pt;
+      color: #111;
+    }
+
+    .page {
+      width: 1024px;
+      min-height: 1497px;
+      padding: 44px 48px 40px 48px;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      width: 100%;
+      border-bottom: 2.5px solid #111;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .header-left {
+      float: left;
+    }
+
+    .header-right {
+      float: right;
+      text-align: right;
+      padding-top: 4px;
+    }
+
+    .clearfix::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 32pt;
+      font-weight: 700;
+      color: #111;
+      line-height: 1;
+    }
+
+    .header-role {
+      font-size: 11pt;
+      color: #333;
+      margin-top: 6px;
+    }
+
+    .ci {
+      font-size: 10pt;
+      color: #222;
+      line-height: 1.75;
+    }
+
+    .ci b {
+      color: #111;
+      font-weight: 600;
+    }
+
+    /* ── TWO COLUMNS ── */
+    .body-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .col-aside {
+      width: 252px;
+      padding-right: 24px;
+      border-right: 1px solid #ccc;
+      vertical-align: top;
+    }
+
+    .col-main {
+      padding-left: 28px;
+      vertical-align: top;
+    }
+
+    /* ── SECTION TITLE ── */
+    .st {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5pt;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1a3a6b;
+      border-bottom: 1px solid #bbb;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      margin-top: 17px;
+    }
+
+    .st:first-child {
+      margin-top: 0;
+    }
+
+    /* ── SKILLS ── */
+    .sg {
+      margin-bottom: 10px;
+    }
+
+    .sgn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7pt;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 3px;
+    }
+
+    .sgl {
+      font-size: 10.5pt;
+      color: #222;
+      line-height: 1.75;
+    }
+
+    .sgl b {
+      font-weight: 700;
+      color: #111;
+    }
+
+    /* ── EDUCATION ── */
+    .edu {
+      margin-bottom: 10px;
+    }
+
+    .edu-uni {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #111;
+      line-height: 1.3;
+    }
+
+    .edu-deg {
+      font-size: 10pt;
+      color: #333;
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    .edu-yr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      color: #444;
+      margin-top: 3px;
+    }
+
+    /* ── LANGUAGES ── */
+    .lang-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .lang-name {
+      font-size: 11pt;
+      font-weight: 600;
+      color: #111;
+      padding: 4px 0;
+    }
+
+    .lang-level {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10pt;
+      color: #444;
+      text-align: right;
+    }
+
+    /* ── HIGHLIGHTS ── */
+    .hi {
+      font-size: 10.5pt;
+      color: #222;
+      line-height: 1.8;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .hi::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #888;
+    }
+
+    /* ── SUMMARY ── */
+    .summary-text {
+      font-size: 10.5pt;
+      color: #222;
+      line-height: 1.75;
+    }
+
+    /* ── JOBS ── */
+    .job {
+      margin-bottom: 14px;
+      padding-bottom: 13px;
+      border-bottom: 1px solid #e2e2e2;
+    }
+
+    .job:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .jh {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2px;
+    }
+
+    .job-co {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 15pt;
+      font-weight: 700;
+      color: #111;
+      line-height: 1;
+    }
+
+    .job-per {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      color: #444;
+      text-align: right;
+      white-space: nowrap;
+      vertical-align: bottom;
+      padding-bottom: 1px;
+    }
+
+    .job-role {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #1a3a6b;
+      margin-bottom: 2px;
+    }
+
+    .job-meta {
+      font-size: 9.5pt;
+      color: #444;
+      margin-bottom: 11px;
+    }
+
+    .job-stack {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5pt;
+      color: #555;
+      border-left: 2px solid #ccc;
+      padding-left: 7px;
+      margin-bottom: 9px;
+      line-height: 1.7;
+    }
+
+    .b {
+      font-size: 10.5pt;
+      color: #222;
+      line-height: 1.75;
+      padding-left: 13px;
+      position: relative;
+    }
+
+    .bd {
+      color: #1a3a6b;
+      font-weight: 700;
+      margin-right: 3px;
+    }
+
+    .jnote {
+      font-size: 9.5pt;
+      color: #444;
+      font-style: italic;
+      margin-top: 5px;
+      padding-left: 12px;
+      border-left: 1px solid #ccc;
+    }
+    @media print {
+      @page { size: 1024px 1497px; margin: 0; }
+      html, body { background: #fff; margin: 0; box-shadow: none; }
+      body { width: 1024px; }
+      .page { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header clearfix">
+    <div class="header-left">
+      <h1>Vadim Melnikov</h1>
+      <div class="header-role">Senior Java Software Engineer &nbsp;&middot;&nbsp; Saint Petersburg, Russia</div>
+    </div>
+    <div class="header-right">
+      <div class="ci"><b>+7 (920) 461-69-71</b></div>
+      <div class="ci">MelnikovVad@yandex.ru</div>
+      <div class="ci">linkedin.com/in/wadimmelnikow</div>
+      <div class="ci">t.me/melnikovvad</div>
+      <div class="ci">Remote &middot; Full-time &middot; Open to travel</div>
+    </div>
+  </div>
+
+  <table class="body-table">
+    <tr>
+
+      <td class="col-aside">
+
+        <div class="st">Profile</div>
+        <div class="summary-text">Senior Java Engineer with 5+ years in banking, BI and telecom. Expert in Spring Boot,
+          Kafka and Kubernetes. Track record of improving code quality and security at scale. Experienced team lead and
+          mentor.
+        </div>
+
+        <div class="st">Skills</div>
+        <div class="sg">
+          <div class="sgn">Languages</div>
+          <div class="sgl"><b>Java 21</b> &middot; Java 17 &middot; Java 11 &middot; Java 8</div>
+        </div>
+        <div class="sg">
+          <div class="sgn">Frameworks</div>
+          <div class="sgl"><b>Spring Boot 3</b> &middot; Spring MVC &middot; Hibernate &middot; JPA &middot; Guice
+            &middot; Vaadin
+          </div>
+        </div>
+        <div class="sg">
+          <div class="sgn">Messaging</div>
+          <div class="sgl"><b>Apache Kafka</b> &middot; RabbitMQ</div>
+        </div>
+        <div class="sg">
+          <div class="sgn">Databases</div>
+          <div class="sgl"><b>PostgreSQL</b> &middot; Redis &middot; Elasticsearch &middot; JanusGraph</div>
+        </div>
+        <div class="sg">
+          <div class="sgn">Big Data</div>
+          <div class="sgl">Hive &middot; Hadoop &middot; Apache Spark</div>
+        </div>
+        <div class="sg">
+          <div class="sgn">DevOps</div>
+          <div class="sgl"><b>Kubernetes</b> &middot; Docker &middot; OpenShift &middot; Jenkins &middot; GitLab
+            &middot; ELK
+          </div>
+        </div>
+        <div class="sg">
+          <div class="sgn">Testing &amp; Quality</div>
+          <div class="sgl">JUnit &middot; Mockito &middot; Playwright &middot; SonarQube</div>
+        </div>
+        <div class="sg">
+          <div class="sgn">Architecture</div>
+          <div class="sgl">Microservices &middot; REST API &middot; Clean Architecture &middot; Design Patterns &middot;
+            SCD2
+          </div>
+        </div>
+
+        <div class="st">Education</div>
+        <div class="edu">
+          <div class="edu-uni">SPbSUT &mdash; Bonch-Bruevich</div>
+          <div class="edu-deg">MSc, Information Systems &amp; Technologies</div>
+          <div class="edu-yr">2020 &ndash; 2022</div>
+        </div>
+        <div class="edu">
+          <div class="edu-uni">Voronezh State Technical Univ.</div>
+          <div class="edu-deg">BSc, Electrical &amp; Electronics Engineering</div>
+          <div class="edu-yr">2015 &ndash; 2019</div>
+        </div>
+
+        <div class="st">Languages</div>
+        <table class="lang-table">
+          <tr>
+            <td class="lang-name">Russian</td>
+            <td class="lang-level">Native</td>
+          </tr>
+          <tr>
+            <td class="lang-name">English</td>
+            <td class="lang-level">B1</td>
+          </tr>
+        </table>
+
+        <div class="st">Highlights</div>
+        <div class="hi">Banking, BI &amp; EDMS expertise</div>
+        <div class="hi">Team lead &amp; mentor (up to 4 engineers)</div>
+        <div class="hi">Code quality &amp; security champion</div>
+        <div class="hi">Clean Code &middot; Clean Architecture &middot; GoF</div>
+        <div class="hi">Collaboration: analysts &amp; DevOps</div>
+
+      </td>
+
+      <td class="col-main">
+
+        <div class="st">Experience</div>
+
+        <div class="job">
+          <table class="jh">
+            <tr>
+              <td class="job-co">Innotech Group</td>
+              <td class="job-per">Jan 2025 &ndash; Present &middot; 1 yr 3 mo</td>
+            </tr>
+          </table>
+          <div class="job-role">Senior Java Developer</div>
+          <div class="job-meta">Moscow &middot; VTB Digital Accounting (outsource)</div>
+          <div class="job-stack">Java 21 &middot; Spring Boot 3 &middot; Kafka &middot; PostgreSQL &middot; Sonar
+            &middot; Kubernetes &middot; ELK &middot; Microservices
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Kafka-based integrations with the bank's third-party services.
+          </div>
+          <div class="b"><span class="bd">&bull;</span>DB optimisation: index creation and denormalisation for query
+            performance.
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Brought all microservices to Sonar standards (&gt;70% coverage,
+            zero duplicates) &mdash; solo, ~4 months.
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Eliminated all critical &amp; high-class CVEs across every
+            microservice.
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Release deployment lead and technical interviewer.</div>
+          <div class="jnote">Transitioning to internal CFT import-substitution project from Jan 2026.</div>
+        </div>
+
+        <div class="job">
+          <table class="jh">
+            <tr>
+              <td class="job-co">Bell Integrator</td>
+              <td class="job-per">Jun &ndash; Dec 2024 &middot; 7 mo</td>
+            </tr>
+          </table>
+          <div class="job-role">Senior Java Developer</div>
+          <div class="job-meta">Moscow &middot; Sber BI System &mdash; credit portfolio analytics</div>
+          <div class="job-stack">Java 17 &middot; Spring Boot &middot; PostgreSQL &middot; Redis &middot; OpenShift
+            &middot; Vault &middot; Jenkins &middot; Playwright
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Designed microservice architecture; built and deployed services
+            to OpenShift.
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Mentored junior developer; conducted code reviews; delivered
+            first production release.
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Implemented Excel revision export functionality.</div>
+        </div>
+
+        <div class="job">
+          <table class="jh">
+            <tr>
+              <td class="job-co">Bank Saint Petersburg</td>
+              <td class="job-per">Sep 2023 &ndash; Jun 2024 &middot; 10 mo</td>
+            </tr>
+          </table>
+          <div class="job-role">Senior Software Engineer</div>
+          <div class="job-meta">Saint Petersburg</div>
+          <div class="job-stack">Java 8 &middot; Spring Boot &middot; Spark &middot; Hive &middot; Hadoop &middot; Kafka
+            &middot; Angular &middot; TypeScript &middot; Swagger
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Built Spring Boot + Angular app for auto-generation of Hive data
+            marts &mdash; replaced a critical Excel workflow.
+          </div>
+          <div class="b"><span class="bd">&bull;</span>1C integration: synced employee roster into Hadoop with full SCD2
+            historical tracking.
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Hadoop cluster maintenance; new data marts and column-level
+            schema changes.
+          </div>
+        </div>
+
+        <div class="job">
+          <table class="jh">
+            <tr>
+              <td class="job-co">ID &mdash; Management Technologies</td>
+              <td class="job-per">Jan 2022 &ndash; Sep 2023 &middot; 1 yr 9 mo</td>
+            </tr>
+          </table>
+          <div class="job-role">Java Developer &rarr; Java Team Lead</div>
+          <div class="job-meta">Moscow &middot; EDMS for Energy Sector</div>
+          <div class="job-stack">Java 11 &middot; Guice &middot; PostgreSQL &middot; Elasticsearch &middot; Vaadin
+            &middot; Jasper Report &middot; Docker &middot; Jenkins
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Designed and delivered a new core document type &mdash; the
+            central entity of the system.
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Extended full-text search; developed Jasper Report templates and
+            admin screens.
+          </div>
+          <div class="b"><span class="bd">&bull;</span>As Team Lead: managed 3 backend devs, drove architecture
+            decisions, met all deadlines.
+          </div>
+        </div>
+
+        <div class="job">
+          <table class="jh">
+            <tr>
+              <td class="job-co">BaltInfoCom</td>
+              <td class="job-per">Jan 2021 &ndash; Jan 2022 &middot; 1 yr 1 mo</td>
+            </tr>
+          </table>
+          <div class="job-role">Junior Java Developer</div>
+          <div class="job-meta">Saint Petersburg &middot; User Behavioral Profiling Platform</div>
+          <div class="job-stack">Java 11 &middot; Spring Boot &middot; PostgreSQL &middot; JanusGraph &middot; RabbitMQ
+            &middot; Maven &middot; Jenkins
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Refactored document upload for parallel DB writes; built Google
+            Earth KML/KMZ loader.
+          </div>
+          <div class="b"><span class="bd">&bull;</span>Integrated two services via OpenAPI auto-generated entities;
+            fixed critical bugs.
+          </div>
+        </div>
+
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
